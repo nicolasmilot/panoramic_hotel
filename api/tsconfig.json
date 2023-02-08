@@ -1,13 +1,17 @@
 {
     "compilerOptions": {
+
         "target": "esnext",
         "module": "commonjs",
         "outDir": "./build",
         "strict": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "moduleResolution": "node",
         "baseUrl": "./src",
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "strictPropertyInitialization": false
     }
 }

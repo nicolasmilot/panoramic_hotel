@@ -1,12 +1,13 @@
-import "reflect-metadata"
-import { DataSource } from "typeorm"
+import 'reflect-metadata'
+import { DataSource } from 'typeorm'
+import { HotelRoom } from './entities/hotelRoom.entity'
 
 export const AppDataSource = new DataSource({
-    type: "sqlite",
+    type: 'sqlite',
     database: process.env.DATABASE || 'app.sql',
-    synchronize: false,
+    synchronize: true,
     logging: true,
-    entities: [],
+    entities: [HotelRoom],
     subscribers: [],
     migrations: [],
 })

@@ -2,6 +2,7 @@ import * as dotenv from "dotenv"
 dotenv.config({ path: `${ __dirname }/.env` })
 
 import { AppDataSource } from './data-source'
+import { seedMasterSuite } from './seeds/seedMasterSuite'
 import { app } from './app'
 
 const startApp = async () => {
@@ -11,6 +12,8 @@ const startApp = async () => {
     }
 
     await AppDataSource.initialize();
+
+    await seedMasterSuite()
 
     if (!process.env.PORT) {
         console.error('Missing app port in env config...')
