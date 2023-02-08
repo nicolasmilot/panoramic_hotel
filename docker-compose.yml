@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  api:
+    build: ./api/
+    volumes:
+      - ./api:/home/node/app
+      - ./api/nodemon.json:/home/node/app/nodemon.json
+    environment:
+      NODE_ENV: 'local'
+    ports:
+      - '3000:3000'
+    command: sh -c "npm install && npm run dev"
+    networks:
+      - postgres
+
+volumes:
+  postgres:
+
+networks:
+  postgres:
