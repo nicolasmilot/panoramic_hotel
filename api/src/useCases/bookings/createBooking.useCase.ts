@@ -47,6 +47,7 @@ class CreateBookingUseCase {
             return this.createBookingPresenter.bookingDatesUnavalaible()
         }
 
+        /* @TODO: Put this in a try/catch, add call to websocket in order to have a realtime booking system */
         return this.createBookingService.createBooking(hotelRoom, checkInDate, checkOutDate).then((booking) => {
             return this.createBookingPresenter.bookingCreated(booking)
         }).catch((error: Error) => {
