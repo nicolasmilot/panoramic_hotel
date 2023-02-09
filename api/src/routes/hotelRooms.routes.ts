@@ -18,7 +18,6 @@ router.get('/:id', async (req: Request, res: Response) => {
         AppDataSource.getRepository(HotelRoom),
         new GetHotelRoomPresenter(res)
     )
-    console.log(req)
     return getHotelRoomUseCase.getHotemRoom(req.params)
 })
 

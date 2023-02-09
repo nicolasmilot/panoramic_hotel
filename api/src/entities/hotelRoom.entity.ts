@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import { Booking } from "./booking.entity";
 
-@Entity()
+@Entity({ name: 'hotel_rooms' })
 class HotelRoom {
     @PrimaryGeneratedColumn('uuid')
     id: string
@@ -13,6 +14,9 @@ class HotelRoom {
 
     @Column()
     maximumBookingDurationInDays: number
+
+    @OneToMany(() => Booking, (booking: Booking) => booking.hotelRoom)
+    bookings: Booking[]
 }
 
 export { HotelRoom as HotelRoom }

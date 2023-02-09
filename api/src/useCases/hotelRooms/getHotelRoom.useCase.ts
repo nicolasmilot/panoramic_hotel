@@ -5,7 +5,7 @@ import { Repository } from 'typeorm/repository/Repository'
 import { GetHotelRoomPresenter } from '../../presenters/hotelRooms/getHotelRoom.presenter'
 
 class GetHotelRoomUseCase {
-    private getHotelRoomValidator: GetHotelRoomValidator
+    private readonly getHotelRoomValidator: GetHotelRoomValidator
     private hotelRoomRepository: Repository<HotelRoom>
     private hotelRoomPresenter: GetHotelRoomPresenter
 
@@ -15,12 +15,16 @@ class GetHotelRoomUseCase {
         this.hotelRoomPresenter = hotelRoomPresenter
     }
 
-    public async getHotemRoom(params: object): Promise<Response|void> {
+    public async getHotemRoom({ id }: any): Promise<Response|void> {
         if (!this.getHotelRoomValidator.validate()) {
             return this.hotelRoomPresenter.validationError(this.getHotelRoomValidator);
         }
 
-        const hotelRoom = await this.hotelRoomRepository.findOneBy(params)
+        const hotelRoom = await this.hotelRoomRepository.findOne({
+            where: { id },
+            relations: ['bookings'],
+        })
+
         if (!hotelRoom) {
             return this.hotelRoomPresenter.hotelRoomNotFound()
         }
