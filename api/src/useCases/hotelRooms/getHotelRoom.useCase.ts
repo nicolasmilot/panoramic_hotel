@@ -20,7 +20,7 @@ class GetHotelRoomUseCase {
             return this.hotelRoomPresenter.validationError(this.getHotelRoomValidator);
         }
 
-        const hotelRoom = await this.hotelRoomRepository.findOne({
+        const hotelRoom: HotelRoom|null = await this.hotelRoomRepository.findOne({
             where: { id },
             relations: ['bookings'],
         })

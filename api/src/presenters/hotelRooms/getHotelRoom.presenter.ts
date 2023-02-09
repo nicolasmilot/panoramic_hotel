@@ -7,23 +7,24 @@ import { HotelRoomValidationErrorResponse } from '../../responses/hotelRooms/hot
 
 class GetHotelRoomPresenter {
     private res: Response
+
     public constructor(res: Response) {
         this.res = res
     }
 
     public validationError(validator: GetHotelRoomValidator) {
         const response = new HotelRoomValidationErrorResponse(validator)
-        this.res.status(response.code).send(response)
+        return this.res.status(response.code).send(response)
     }
 
     public hotelRoomNotFound() {
         const response = new HotelRoomNotFoundResponse()
-        this.res.status(response.code).send(response);
+        return this.res.status(response.code).send(response);
     }
 
     public hotelRoomFound(hotelRoom: HotelRoom) {
         const response = new GetHotelRoomResponse(hotelRoom)
-        this.res.status(response.code).send(response)
+        return this.res.status(response.code).send(response)
     }
 }
 
