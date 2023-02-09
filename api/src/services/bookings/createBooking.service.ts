@@ -22,6 +22,12 @@ class CreateBookingService {
     }
 
     public async getOverlappingBookings(checkInDate: any, checkOutDate: any): Promise<Booking[]> {
+        /**
+         * TODO: Switch where clause for this one: WHERE (
+         *     (checkInDate <= '2023-02-13' AND checkOutDate > '2023-02-13') OR
+         *     (checkInDate < '2023-02-16' AND checkOutDate >= '2023-02-16')
+         * ) and add status
+         */
         const between = Between(
             checkInDate.format('YYYY-MM-DD'),
             checkOutDate.format('YYYY-MM-DD')
@@ -41,8 +47,6 @@ class CreateBookingService {
     }
 
     public async createBooking(hotelRoom: HotelRoom, checkInDate: any, checkOutDate: any): Promise<Booking> {
-        console.log(checkInDate)
-        console.log(checkOutDate)
         const booking = new Booking()
         booking.checkInDate = checkInDate.format('YYYY-MM-DD')
         booking.checkOutDate = checkOutDate.format('YYYY-MM-DD')

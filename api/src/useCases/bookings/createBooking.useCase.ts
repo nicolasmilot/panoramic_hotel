@@ -35,8 +35,8 @@ class CreateBookingUseCase {
             return this.createBookingPresenter.hotelRoomNotFound()
         }
 
-        const checkInDate = dayjs(params.checkInDate).tz('America/Toronto')
-        const checkOutDate = dayjs(params.checkOutDate).tz('America/Toronto')
+        const checkInDate = dayjs(params.checkInDate)
+        const checkOutDate = dayjs(params.checkOutDate)
         if (checkOutDate.diff(checkInDate, 'day', true) > hotelRoom.maximumBookingDurationInDays) {
             return this.createBookingPresenter.invalidBookingDuration()
         }
